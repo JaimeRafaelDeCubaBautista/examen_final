@@ -11,7 +11,9 @@
   <div id="app">
     <h2 id="titulo">SISTEMA BIBLIOTECA CENTRAL</h2>
     <br>
-
+      <h3 style="color: black;">Nombre base de datos: biblioteca</h3>
+      <h3 style="color: black;">Nombre coleciones: lectores, libros, registros</h3>
+    <br>
     <div class="caja">
         <h3>-Lector</h3> 
         <br>
@@ -33,7 +35,14 @@
       </div>
 
            <div id="tabla_lectores">
-               
+            <table id="tlectores">
+              <tr>
+                <th>Documento</th>           
+                <th>Nombre</th>
+                <th>Telefono</th>
+            
+              </tr>
+            </table>
            </div>
 
      <br><br>
@@ -57,6 +66,17 @@
             </form>
       </div>
 
+      <div id="tabla_libros">
+        <table id="tlibros">
+          <tr>
+            <th>Titulo</th>           
+            <th>Autor</th>
+            <th>Copia del libro #</th>
+          </tr>
+        </table>
+       </div>
+
+
     <br><br>
     <div class="caja">
         <h3>-Registrar Prestamo</h3>
@@ -64,8 +84,8 @@
               <form id="form-libro" action="addprestamo" method="POST">
                 <input type="text" placeholder="Titulo" name="titulo" id="titulo" />
                 <input type="text" placeholder="Documento lector" name="doc_lector" id="doc_lector"/>
-                <input type="date" placeholder="Fecha prestamo" name="fecha" id="fechap" />
-                <input type="date" placeholder="Fecha para devolucion" name="fecha" id="fechad" />
+                <input type="date" placeholder="Fecha prestamo" name="fechap" id="fechap" />
+                <input type="date" placeholder="Fecha para devolucion" name="fechad" id="fechad" />
               <br> <br>
                 <button type="submit" class="add">
                   Registrar
@@ -78,6 +98,18 @@
                 </button>
               </form>
     </div>
+
+    <div id="tabla_prestamos">
+      <table id="tprestamos">
+        <tr>
+          <th>Titulo</th>           
+          <th>Documento Lector</th>
+          <th>Copia del libro #</th>
+          <th>Fecha prestamo</th>
+          <th>Fecha para devolucion</th>
+        </tr>
+      </table>
+     </div>
   </div>
     <script>
        
@@ -86,11 +118,50 @@
         .then(res => res.json())
         .then(data => { 
             const datos = data;
+            console.log(datos)
             datos.forEach(element => {
-                document.querySelector('#tabla_lectores').innerHTML += `<div class="filas" id="${datos._id}"></div>`
-                 
+                document.querySelector('#tlectores').innerHTML += `
+                <tr id="${JSON.stringify(element._id)}">
+                  <td>${JSON.stringify(element.documento)}</td>
+                  <td>${JSON.stringify(element.nombre)}</td>
+                  <td>${JSON.stringify(element.telefono)}</td>
+                </tr> `           
             });
         })
+
+        fetch('http://localhost:3000/libros')
+        .then(res => res.json())
+        .then(data => { 
+            const datos = data;
+            console.log(datos)
+            datos.forEach(element => {
+                document.querySelector('#tlibros').innerHTML += `
+                <tr id="${JSON.stringify(element._id)}">
+                  <td>${JSON.stringify(element.titulo)}</td>
+                  <td>${JSON.stringify(element.autor)}</td>
+                  <td>${JSON.stringify(element.copia)}</td>
+                </tr> `           
+            });
+        })
+
+        fetch('http://localhost:3000/prestamo')
+        .then(res => res.json())
+        .then(data => { 
+            const datos = data;
+            console.log(datos)
+            datos.forEach(element => {
+                document.querySelector('#tprestamos').innerHTML += `
+                <tr id="${JSON.stringify(element._id)}">
+                  <td>${JSON.stringify(element.titulo)}</td>
+                  <td>${JSON.stringify(element.doc_lector)}</td>
+                  <td>-</td>
+                  <td>${JSON.stringify(element.fechap)}</td>
+                  <td>${JSON.stringify(element.fechad)}</td>
+                </tr> `           
+            });
+        })
+
+
       });
       
     </script>

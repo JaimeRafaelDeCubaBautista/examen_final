@@ -52,7 +52,7 @@ app.listen(port, () => {
             let nuevo3 = JSON.parse(nuevo)
             
             collection.insertOne(nuevo3, function(err, docs){
-              res.send(nuevo3)
+              res.redirect('/');
             })
             
           })
@@ -64,7 +64,7 @@ app.listen(port, () => {
             let nuevo3 = JSON.parse(nuevo)
             
             collection.insertOne(nuevo3, function(err, docs){
-              res.send(nuevo3)
+              res.redirect('/');
             })   
           })
 
@@ -75,7 +75,7 @@ app.listen(port, () => {
             let nuevo3 = JSON.parse(nuevo)
             
             collection.insertOne(nuevo3, function(err, docs){
-              res.send(nuevo3)
+              res.redirect('/');
             })   
           })
 
@@ -89,7 +89,7 @@ app.listen(port, () => {
             let documento = nuevo3.documento
 
             collection.deleteOne({documento : documento}).then(doc=>{
-              res.send("Lector eliminado correctamente")
+              res.redirect('/');
             })
 
         })
@@ -102,7 +102,7 @@ app.listen(port, () => {
           let documento = nuevo3.documento
         
           collection.deleteOne({documento : documento}).then(doc=>{
-            res.send("Libro eliminado correctamente")
+            res.redirect('/');
           })
 
         })
@@ -115,7 +115,7 @@ app.listen(port, () => {
           let documento = nuevo3.documento
         
           collection.deleteOne({documento : documento}).then(doc=>{
-            res.send("Registro de prestamo eliminado correctamente")
+            res.redirect('/');
           })
         })
 
@@ -129,7 +129,7 @@ app.listen(port, () => {
           let nuevo3 = JSON.parse(nuevo)
         
           collection.updateOne({documento : nuevo3.documento},{$set : {nombre : nuevo3.nombre, telefono : nuevo3.telefono}}).then(doc=>{
-            res.send("Lector modificado correctamente")
+            res.redirect('/');
           })
 
         })
@@ -142,7 +142,7 @@ app.listen(port, () => {
           let nuevo3 = JSON.parse(nuevo)
         
           collection.updateOne({documento : nuevo3.documento},{$set : {nombre : nuevo3.nombre, telefono : nuevo3.telefono}}).then(doc=>{
-            res.send("Lector modificado correctamente")
+            res.redirect('/');
           })
 
         })
@@ -155,7 +155,7 @@ app.listen(port, () => {
           let nuevo3 = JSON.parse(nuevo)
         
           collection.updateOne({documento : nuevo3.documento},{$set : {nombre : nuevo3.nombre, telefono : nuevo3.telefono}}).then(doc=>{
-            res.send("Lector modificado correctamente")
+            res.redirect('/');
           })
 
         })
@@ -168,7 +168,32 @@ app.listen(port, () => {
           let collection = client.db(dbName).collection('lectores');
 
           collection.find().toArray(function(err, docs){
+
             res.send(docs)
+
+          })
+        })
+
+
+        app.get('/libros', (req, res) => {
+
+          let collection = client.db(dbName).collection('libros');
+
+          collection.find().toArray(function(err, docs){
+            
+            res.send(docs)
+
+          })
+        })
+
+        app.get('/prestamos', (req, res) => {
+
+          let collection = client.db(dbName).collection('registros');
+
+          collection.find().toArray(function(err, docs){
+            
+            res.send(docs)
+
           })
         })
 
