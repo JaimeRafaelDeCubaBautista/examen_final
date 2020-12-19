@@ -186,7 +186,7 @@ app.listen(port, () => {
           })
         })
 
-        app.get('/prestamos', (req, res) => {
+        app.get('/prestamo', (req, res) => {
 
           let collection = client.db(dbName).collection('registros');
 
