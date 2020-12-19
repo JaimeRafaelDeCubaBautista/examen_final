@@ -10,42 +10,89 @@
 <body>
   <div id="app">
     <h2 id="titulo">SISTEMA BIBLIOTECA CENTRAL</h2>
-    <h3>-Lector</h3> 
     <br>
-        <form id="form-user" action="/addlector" method="POST">
-          <input type="number" placeholder="Documento" name="documento" id="documento" />
-          <input type="text" placeholder="Nombre" name="nombre" id="nombre" pattern="[A-Za-z]{3,30}" title="De 4 a 30 caracteres, solo letras"/>
-          <input type="number" placeholder="Teléfono" name="telefono" id="telefono" />
-          <button type="submit" id="bton">
-            Agregar
-          </button>
-        </form>
+
+    <div class="caja">
+        <h3>-Lector</h3> 
+        <br>
+            <form id="form-user" action="/addlector" method="POST">
+              <input type="number" placeholder="Documento" name="documento" id="documento" />
+              <input type="text" placeholder="Nombre" name="nombre" id="nombre" />
+              <input type="number" placeholder="Teléfono" name="telefono" id="telefono" />
+            <br> <br>
+              <button type="submit" class="add">    
+                Agregar
+              </button>
+              <button type="submit" class="update" formaction="/updatelector">
+                Modificar
+              </button>
+              <button type="submit" class="delete" formaction="/deletelector">
+                Eliminar
+              </button>
+            </form>
+      </div>
+
+           <div id="tabla_lectores">
+               
+           </div>
+
      <br><br>
-     <h3>-Libros</h3>
-        <form id="form-libro" action="addlibro" method="POST">
-          <input type="text" placeholder="Titulo" name="titulo" id="titulo" />
-          <input type="text" placeholder="Autor" name="autor" id="autor" pattern="[A-Za-z]{3,30}" title="De 4 a 30 caracteres, solo letras"/>
-          <input type="number" placeholder="Copia #" name="copia" id="copia" />
-          <button type="submit" id="bton">
-            Agregar
-          </button>
-        </form>
+     <div class="caja">
+        <h3>-Libros </h3> 
+        <br>
+            <form id="form-libro" action="addlibro" method="POST">
+              <input type="text" placeholder="Titulo" name="titulo" id="titulo" />
+              <input type="text" placeholder="Autor" name="autor" id="autor"/>
+              <input type="number" placeholder="Copia #" name="copia" id="copia" />
+            <br> <br>
+              <button type="submit" class="add">
+                Agregar
+              </button>
+              <button type="submit" class="update" formaction="/updatelibro">
+                Modificar
+              </button>
+              <button type="submit" class="delete" formaction="/deletelibro">
+                Eliminar
+              </button>
+            </form>
+      </div>
+
     <br><br>
-    <h3>-Registrar Prestamo</h3>
-           <form id="form-libro" action="addprestamo" method="POST">
-             <input type="text" placeholder="Titulo" name="titulo" id="titulo" />
-             <input type="text" placeholder="Documento lector" name="doc_lector" id="doc_lector" pattern="[A-Za-z]{3,30}" title="De 4 a 30 caracteres, solo letras"/>
-             <input type="date" placeholder="Fecha devolucion" name="fecha" id="fecha" />
-             <button type="submit" id="bton">
-               Registrar
-             </button>
-           </form>
-        
-    
-    <div id="contactos">
-      <ul>
-      </ul>
+    <div class="caja">
+        <h3>-Registrar Prestamo</h3>
+        <br>
+              <form id="form-libro" action="addprestamo" method="POST">
+                <input type="text" placeholder="Titulo" name="titulo" id="titulo" />
+                <input type="text" placeholder="Documento lector" name="doc_lector" id="doc_lector"/>
+                <input type="date" placeholder="Fecha prestamo" name="fecha" id="fechap" />
+                <input type="date" placeholder="Fecha para devolucion" name="fecha" id="fechad" />
+              <br> <br>
+                <button type="submit" class="add">
+                  Registrar
+                </button>
+                <button type="submit" class="update" formaction="/updateprestamo">
+                  Modificar
+                </button>
+                <button type="submit" class="delete" formaction="/deleteprestamo">
+                  Eliminar
+                </button>
+              </form>
     </div>
   </div>
+    <script>
+       
+       window.addEventListener('DOMContentLoaded', e => {
+        fetch('http://localhost:3000/lectores')
+        .then(res => res.json())
+        .then(data => { 
+            const datos = data;
+            datos.forEach(element => {
+                document.querySelector('#tabla_lectores').innerHTML += `<div class="filas" id="${datos._id}">hola</div>`
+                 
+            });
+        })
+      });
+      
+    </script>
 </body>
 </html>

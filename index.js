@@ -45,50 +45,106 @@ app.listen(port, () => {
 
 //--------agregar informacion--------------------
 
-app.post('/addlector', (req, res) => {
+          app.post('/addlector', (req, res) => {
 
-  let collection = client.db(dbName).collection('lectores');
-  let nuevo = JSON.stringify(req.body)
-  let nuevo3 = JSON.parse(nuevo)
-  
-  collection.insertOne(nuevo3, function(err, docs){
-    res.send(nuevo3)
-  })
-  
-})
+            let collection = client.db(dbName).collection('lectores');
+            let nuevo = JSON.stringify(req.body)
+            let nuevo3 = JSON.parse(nuevo)
+            
+            collection.insertOne(nuevo3, function(err, docs){
+              res.send(nuevo3)
+            })
+            
+          })
 
-app.post('/addlibro', (req, res) => {
+          app.post('/addlibro', (req, res) => {
 
-  let collection = client.db(dbName).collection('libros');
-  let nuevo = JSON.stringify(req.body)
-  let nuevo3 = JSON.parse(nuevo)
-  
-  collection.insertOne(nuevo3, function(err, docs){
-    res.send(nuevo3)
-  })   
-  
-})
+            let collection = client.db(dbName).collection('libros');
+            let nuevo = JSON.stringify(req.body)
+            let nuevo3 = JSON.parse(nuevo)
+            
+            collection.insertOne(nuevo3, function(err, docs){
+              res.send(nuevo3)
+            })   
+          })
 
-app.post('/addprestamo', (req, res) => {
+          app.post('/addprestamo', (req, res) => {
 
-  let collection = client.db(dbName).collection('registros');
-  let nuevo = JSON.stringify(req.body)
-  let nuevo3 = JSON.parse(nuevo)
-  
-  collection.insertOne(nuevo3, function(err, docs){
-    res.send(nuevo3)
-  })   
-  
-})
+            let collection = client.db(dbName).collection('registros');
+            let nuevo = JSON.stringify(req.body)
+            let nuevo3 = JSON.parse(nuevo)
+            
+            collection.insertOne(nuevo3, function(err, docs){
+              res.send(nuevo3)
+            })   
+          })
 
-app.get('/lectores', (req, res) => {
+//---------------------Eliminar informacion---------------
 
-  let collection = client.db(dbName).collection('lectores');
+        app.post('/deletelector', (req, res) => {
 
-  collection.find().toArray(function(err, docs){
-    res.send(docs)
-  })
-})
+            let collection = client.db(dbName).collection('lectores');
+            let nuevo = JSON.stringify(req.body)
+            let nuevo3 = JSON.parse(nuevo)
+            let documento = nuevo3.documento
+
+            collection.deleteOne({documento : documento}).then(doc=>{
+              res.send("Lector eliminado correctamente")
+            })
+
+        })
+
+        app.post('/deletelibro', (req, res) => {
+
+          let collection = client.db(dbName).collection('libros');
+          let nuevo = JSON.stringify(req.body)
+          let nuevo3 = JSON.parse(nuevo)
+          let documento = nuevo3.documento
+        
+          collection.deleteOne({documento : documento}).then(doc=>{
+            res.send("Libro eliminado correctamente")
+          })
+
+        })
+
+        app.post('/deleteprestamo', (req, res) => {
+
+          let collection = client.db(dbName).collection('registros');
+          let nuevo = JSON.stringify(req.body)
+          let nuevo3 = JSON.parse(nuevo)
+          let documento = nuevo3.documento
+        
+          collection.deleteOne({documento : documento}).then(doc=>{
+            res.send("Registro de prestamo eliminado correctamente")
+          })
+        })
+
+ //----------------------Modificar informacion----------------------------
+
+
+        app.post('/updatelector', (req, res) => {
+
+          let collection = client.db(dbName).collection('lectores');
+          let nuevo = JSON.stringify(req.body)
+          let nuevo3 = JSON.parse(nuevo)
+        
+          collection.updateOne({documento : nuevo3.documento},{$set : {nombre : nuevo3.nombre, telefono : nuevo3.telefono}}).then(doc=>{
+            res.send("Lector modificado correctamente")
+          })
+
+        })
+
+
+//-----------------cargar tablas-----------------------------
+
+        app.get('/lectores', (req, res) => {
+
+          let collection = client.db(dbName).collection('lectores');
+
+          collection.find().toArray(function(err, docs){
+            res.send(docs)
+          })
+        })
 
 /*
 app.get('/modelo/total', (req, res) => {

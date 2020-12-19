@@ -15,9 +15,18 @@ h2 {
   text-align: center;
 }
 
+h3 {
+   color: #E3DFDC;
+}
+
 /* Estilos para los elementos del formulario */
 #formulario {
   margin-bottom: 1em;
+}
+
+.caja {
+  background-color: rgba(51, 51, 51, 0.541);
+  padding: 10px;
 }
 
 input {
@@ -74,31 +83,30 @@ button:hover {
   float: right;
 }
 
-.btn {
+button {
   border-radius: 2px;
   display: inline-block;
   padding: 2px 6px;
   transition: all 0.3s ease
 }
 
-.btn:hover {
+button:hover {
  cursor: pointer
 }
 
-.btn_editar {
-  background: #E3DFDC;
+.update {
+  background: #d1bb72;
 }
 
-.btn_editar:hover {
-  background: #fff;
+.update:hover {
+  background: rgb(235, 236, 181);
 }
 
-.btn_borrar {
-  background: #E3DFDC;
-  margin-left: 3px;
+.delete {
+  background: #d64a27;
 }
 
-.btn_borrar:hover {
-  background: #F8A690;
+.delete:hover {
+  background: #ec7d5e;
   color: #fff;
 }
