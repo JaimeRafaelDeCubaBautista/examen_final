@@ -99,9 +99,9 @@ app.listen(port, () => {
           let collection = client.db(dbName).collection('libros');
           let nuevo = JSON.stringify(req.body)
           let nuevo3 = JSON.parse(nuevo)
-          let documento = nuevo3.documento
+          let titulo = nuevo3.titulo
         
-          collection.deleteOne({documento : documento}).then(doc=>{
+          collection.deleteOne({titulo : titulo}).then(doc=>{
             res.redirect('/');
           })
 
@@ -113,8 +113,9 @@ app.listen(port, () => {
           let nuevo = JSON.stringify(req.body)
           let nuevo3 = JSON.parse(nuevo)
           let documento = nuevo3.documento
+          let titulo = nuevo3.titulo
         
-          collection.deleteOne({documento : documento}).then(doc=>{
+          collection.deleteOne({documento : documento, titulo : titulo}).then(doc=>{
             res.redirect('/');
           })
         })
@@ -141,7 +142,7 @@ app.listen(port, () => {
           let nuevo = JSON.stringify(req.body)
           let nuevo3 = JSON.parse(nuevo)
         
-          collection.updateOne({documento : nuevo3.documento},{$set : {nombre : nuevo3.nombre, telefono : nuevo3.telefono}}).then(doc=>{
+          collection.updateOne({titulo : nuevo3.titulo},{$set : {autor : nuevo3.autor, copia : nuevo3.copia}}).then(doc=>{
             res.redirect('/');
           })
 
@@ -154,7 +155,7 @@ app.listen(port, () => {
           let nuevo = JSON.stringify(req.body)
           let nuevo3 = JSON.parse(nuevo)
         
-          collection.updateOne({documento : nuevo3.documento},{$set : {nombre : nuevo3.nombre, telefono : nuevo3.telefono}}).then(doc=>{
+          collection.updateOne({documento : nuevo3.documento, titulo : titulo},{$set : {fechap : nuevo3.fechap,  fechad : nuevo3.fechad}}).then(doc=>{
             res.redirect('/');
           })
 
