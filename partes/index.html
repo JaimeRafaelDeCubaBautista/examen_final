@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>App Contactos</title>
+  <link rel="stylesheet" href="app.css" />
+  
+</head>
+<body>
+  <div id="app">
+    <h2 id="titulo">SISTEMA BIBLIOTECA CENTRAL</h2>
+    <h3>-Lector</h3> 
+    <br>
+        <form id="form-user" action="/addlector" method="POST">
+          <input type="number" placeholder="Documento" name="documento" id="documento" />
+          <input type="text" placeholder="Nombre" name="nombre" id="nombre" pattern="[A-Za-z]{3,30}" title="De 4 a 30 caracteres, solo letras"/>
+          <input type="number" placeholder="Teléfono" name="telefono" id="telefono" />
+          <button type="submit" id="bton">
+            Agregar
+          </button>
+        </form>
+     <br><br>
+     <h3>-Libros</h3>
+        <form id="form-libro" action="addlibro" method="POST">
+          <input type="text" placeholder="Titulo" name="titulo" id="titulo" />
+          <input type="text" placeholder="Autor" name="autor" id="autor" pattern="[A-Za-z]{3,30}" title="De 4 a 30 caracteres, solo letras"/>
+          <input type="number" placeholder="Copia #" name="copia" id="copia" />
+          <button type="submit" id="bton">
+            Agregar
+          </button>
+        </form>
+    <br><br>
+    <h3>-Registrar Prestamo</h3>
+           <form id="form-libro" action="addprestamo" method="POST">
+             <input type="text" placeholder="Titulo" name="titulo" id="titulo" />
+             <input type="text" placeholder="Documento lector" name="doc_lector" id="doc_lector" pattern="[A-Za-z]{3,30}" title="De 4 a 30 caracteres, solo letras"/>
+             <input type="date" placeholder="Fecha devolucion" name="fecha" id="fecha" />
+             <button type="submit" id="bton">
+               Registrar
+             </button>
+           </form>
+        
+    
+    <div id="contactos">
+      <ul>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

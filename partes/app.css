@@ -1,0 +1,104 @@
+/* Quitar las separaciones por defecto de todas las etiquetas */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body{
+background-image: url(fondo.jpg);
+}
+
+/* Estilo para el título */
+h2 {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+/* Estilos para los elementos del formulario */
+#formulario {
+  margin-bottom: 1em;
+}
+
+input {
+  border-radius: 3px;
+  border: 1px solid #7FA085;
+  padding: 6px 16px;
+}
+
+button {
+  background: #7FA085;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 4px 12px;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background: #BFD2B2;
+  color: #7FA085
+}
+
+/* Estilos para la app */
+#app {
+  background: rgba(221, 214, 214, 0.829);
+  border-radius: 4px;
+  box-shadow: 0 0 5px #7FA085;
+  margin: 2em auto 0 auto;
+  padding: 2em;
+  width: 1000px;
+}
+
+
+/* Estilos para el listado de estudiantes */
+#contactos ul {
+  border-radius: 3px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  list-style: none;
+  overflow: hidden;
+}
+
+#contactos li {
+  background: #7FA085;
+  overflow: hidden;
+  padding: 6px 16px;
+}
+
+#contactos li:nth-child(even) {
+  background: #BFD2B2
+}
+
+.botones {
+  float: right;
+}
+
+.btn {
+  border-radius: 2px;
+  display: inline-block;
+  padding: 2px 6px;
+  transition: all 0.3s ease
+}
+
+.btn:hover {
+ cursor: pointer
+}
+
+.btn_editar {
+  background: #E3DFDC;
+}
+
+.btn_editar:hover {
+  background: #fff;
+}
+
+.btn_borrar {
+  background: #E3DFDC;
+  margin-left: 3px;
+}
+
+.btn_borrar:hover {
+  background: #F8A690;
+  color: #fff;
+}
